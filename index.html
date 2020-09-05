@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js" integrity="sha512-LfB+BcvR3zBt7ebVskhSWiSbEUiG3p5EcCprkieldsKhBeR6wpnLi0VpWC2GNgVGWP2n/skO8Bx2oKNjUhXCkw==" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="icon" href="https://curiousdumbo.ga/icons/3d-heart.png">
+	<title>Happy Teacher's Day</title>
+	<style>
+		body{
+			background: linear-gradient(271deg, #833ab4, #fd1d1d, #fcb045);
+			background-size: 600% 600%;
+
+			-webkit-animation: bgg 28s ease infinite;
+			-moz-animation: bgg 28s ease infinite;
+			animation: bgg 28s ease infinite;
+		}
+		@-webkit-keyframes bgg{
+		    0%{background-position:0% 50%}
+		    50%{background-position:100% 51%}
+		    100%{background-position:0% 50%}
+		}
+		@-moz-keyframes bgg{
+		    0%{background-position:0% 50%}
+		    50%{background-position:100% 51%}
+		    100%{background-position:0% 50%}
+		}
+		@keyframes bgg{
+		    0%{background-position:0% 50%}
+		    50%{background-position:100% 51%}
+		    100%{background-position:0% 50%}
+		}
+		.btext{
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			color: white;
+			font-size: 40px;
+			width: 85%;
+			text-align: center;
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 700;
+		}
+		.name{
+			position: absolute;
+			bottom: 27%;
+			left: 50%;
+			transform: translate(-50%,0) rotate(-5deg);
+			color: white;
+			font-size: 30px;
+			width: 90%;
+			text-align: center;
+			font-family: 'Pacifico', cursive;
+		}
+		#footer{
+			color: white;
+			position: absolute;
+			top: 95%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			font-family: 'Montserrat', sans-serif;
+			font-size: 12px;
+			white-space: nowrap;
+			overflow: hidden;
+			opacity: 0;
+		}
+		#heart{
+			color: white;
+		}
+		.letter2{
+			display: inline-block;
+		}
+		a{
+			text-decoration: none;
+			color: inherit;
+		}
+	</style>
+</head>
+<body>
+	<span class="btext">Wish you a very Happy Teacher's Day</span>
+	<span class="name"></span>
+	<div id="footer"><a href="https://instagram.com/rise.lpu">Made with <span id="heart">❤</span> by Team RISE</a></div>
+	<script>
+		var url = document.location.href;
+		if(url.includes("?")){
+			var params = url.split('?')[1].split('&'),
+	        data = {}, tmp;
+		    for (var i = 0, l = params.length; i < l; i++) {
+		         tmp = params[i].split('=');
+		         data[tmp[0]] = tmp[1];
+		    }
+		    console.log(data);
+		    if("n" in data){
+		    	var name = data.n;	    	
+		    	if("m" in data)
+		    		name = name + " Ma'am";
+		    	if("s" in data)
+		    		name = name + " Sir";
+		    	$('.name').html(name);
+		    }else{
+		    	$('.name').html("");
+		    }
+		}
+
+		var textWrapper = document.querySelector('.btext');
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+		var textWrapper2 = document.querySelector('.name');
+		textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, "<span class='letter2'>$&</span>");
+		anime.timeline().add({
+		    targets: '.btext .letter',
+		    opacity: [0,1],
+		    easing: "easeInOutQuad",
+		    duration: 2250,
+		    delay: (el, i) => 150 * (i+1)
+		}).add({
+		    targets: '.name .letter2',
+		    scale: [4,1],
+		    opacity: [0,1],
+		    translateZ: 0,
+		    easing: "easeOutExpo",
+		    duration: 950,
+		    delay: (el, i) => 70*i
+		}).add({
+		  	targets: '#footer',
+		    opacity: 1,
+		    duration: 1000,
+		    easing: 'linear'
+		});
+	</script>
+</body>
+</html>
